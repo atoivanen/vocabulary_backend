@@ -17,6 +17,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('token/', views.CustomObtainAuthToken.as_view(), name='token'),
     path('register/', views.RegisterUserView.as_view(), name='register'),
-    path('chapters/', views.ChapterListView.as_view()),
-    path('chapters/<int:pk>', views.ChapterDetailView.as_view()),
+    path('chapters/', views.ChapterListView.as_view(), name='chapter-list'),
+    path('chapters/<int:pk>', views.ChapterDetailView.as_view(), name='chapter-detail'),
 ]

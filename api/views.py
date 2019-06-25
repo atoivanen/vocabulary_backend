@@ -69,7 +69,7 @@ class WordViewSet(viewsets.ModelViewSet):
         """
         startswith = self.request.query_params.get('startswith', None)
         if startswith is not None:
-            self.queryset = self.queryset.filter(lemma__startswith=startswith)
+            self.queryset = self.queryset.filter(lemma__istartswith=startswith)
         return self.queryset
 
     def perform_create(self, serializer):
