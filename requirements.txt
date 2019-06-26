@@ -5,3 +5,4 @@ django-cors-headers==3.0.2
 djangorestframework==3.9.2
 fr-core-news-sm==2.0.0
 spacy==2.0.18
+django-heroku==0.3.1
