@@ -84,9 +84,11 @@ def translate_words(worddict, source_lang, target_lang):
                 for w in word_queryset:
                     word_list.append(w)
             else:
+                print(key)
                 # extend the search
                 tokens = info.get('orig')
                 if tokens:
+                    print(tokens)
                     token_queryset = Word.objects.filter(
                         lemma__iexact=tokens[0],
                         source_lang=source_lang,
