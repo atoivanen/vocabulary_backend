@@ -17,4 +17,6 @@ urlpatterns = [
     path('logout/', index),
     path('register/', index),
     path('login/', index),
+    path('new/', index),
+    re_path(r'^edit/.*', index),
 ]
