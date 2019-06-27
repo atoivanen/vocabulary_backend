@@ -15,11 +15,14 @@ def spacy_analyze(fulltext, source_lang):
     nlp: nlp object
 
     """
-    doc = []
+    doc = None
 
     if (source_lang == 'fr'):
-        nlp = fr_core_news_sm.load(disable=['parser', 'ner'])
-        doc = nlp(fulltext)
+        try:
+            nlp = fr_core_news_sm.load(disable=['parser', 'ner'])
+            doc = nlp(fulltext)
+        except:
+            print(sys.exc_info()[0])
 
     return doc
 
@@ -141,26 +144,27 @@ def save_chapter(
     fulltext = title + ' ' + body
 
     doc = spacy_analyze(fulltext, source_lang)
-    word_properties = analyze_text(doc)
+    if doc:
+        word_properties = analyze_text(doc)
 
-    word_list = translate_words(
-        word_properties,
-        source_lang,
-        target_lang
-    )
+        word_list = translate_words(
+            word_properties,
+            source_lang,
+            target_lang
+        )
 
-    # save word properties related to chapter
-    for w in word_list:
-        properties = word_properties.get(w.lemma)
-        wp = WordProperties()
-        if properties:
-            if properties['pos'] == w.pos:
-                wp.frequency = properties['count']
-                token_list = properties.get('orig')
-                if token_list:
-                    wp.token = ', '.join(token_list)
-        wp.chapter = chapter
-        wp.word = w
-        wp.save()
+        # save word properties related to chapter
+        for w in word_list:
+            properties = word_properties.get(w.lemma)
+            wp = WordProperties()
+            if properties:
+                if properties['pos'] == w.pos:
+                    wp.frequency = properties['count']
+                    token_list = properties.get('orig')
+                    if token_list:
+                        wp.token = ', '.join(token_list)
+            wp.chapter = chapter
+            wp.word = w
+            wp.save()
 
     return chapter
