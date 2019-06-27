@@ -2,6 +2,7 @@ from vocabulary.models import Word, Chapter, WordProperties
 
 import sys
 import spacy
+import fr_core_news_sm
 
 def spacy_analyze(fulltext, source_lang):
     """Use spacy to analyze input text
@@ -14,8 +15,11 @@ def spacy_analyze(fulltext, source_lang):
     nlp: nlp object
 
     """
-    nlp = spacy.load(source_lang, disable=['parser', 'ner'])
-    doc = nlp(fulltext)
+    doc = []
+
+    if (source_lang == 'fr'):
+        nlp = fr_core_news_sm.load(disable=['parser', 'ner'])
+        doc = nlp(fulltext)
 
     return doc
 
