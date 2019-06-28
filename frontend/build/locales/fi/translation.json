@@ -101,5 +101,14 @@
   "AboutRegistering": "<0>Rekisteröitymällä käyttäjäksi</0> voit luoda uusia tekstejä lukemistoon ja julkaista niitä muiden luettaviksi. Kun olet kirjautunut sisään, harjoittelemasi sanat tallentuvat <2>Omaan sanastoon</2>, jossa voit edelleen kerrata näitä sanoja.",
   "AboutGeneral": "Sanasto-sovellus on tehty Helsingin yliopiston Full Stack Open -kurssin harjoitustyönä. Sen käyttö on ilmaista eikä käyttäjistä kerätä henkilötietoja. Sovellusta ei ylläpidetä eikä kehitetä aktiivisesti.",
   "AboutTechnical": "Sovelluksen tekniset tiedot löytyvät sen GitHub-repositorioista:",
-  "ErrorWhenFetchingWords": "Sanoja ei voitu hakea palvelimelta"
+  "ErrorWhenFetchingWords": "Sanoja ei voitu hakea palvelimelta",
+  "RemoveButton": "Poista",
+  "RemovalSucceeded": "Poistettiin",
+  "RemovalFailed": "Poisto epäonnistui",
+  "AddWordFromDictionaryButton": "Lisää sanakirjasta",
+  "AddWordToVocabulary": "Lisää sanastoon",
+  "WordForms": "Taivutusmuodot",
+  "AddedWord": "Lisättiin sana",
+  "ChooseWordFromDictionary": "Et voi lisätä tätä sanaa. Syötä vähintään kaksi kirjainta Sana-kenttään, jotta saat näkyviin vaihtoehdot.",
+  "TokenLabel": "Sananmuodot"
 }
