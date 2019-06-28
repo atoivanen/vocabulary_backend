@@ -77,16 +77,41 @@ class WordViewSet(viewsets.ModelViewSet):
         serializer.save(created_by=self.request.user)
 
 
-class WordPropertiesViewSet(viewsets.ModelViewSet):
+class WordPropertiesListView(generics.ListCreateAPIView):
     """Manage word properties in the database"""
     serializer_class = serializers.WordPropertiesSerializer
     queryset = WordProperties.objects.all()
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get_queryset(self):
+    def get(self, request, *args, **kwargs):
         """Retrieve the word properties for the authenticated user"""
-        return self.queryset.filter(chapter__created_by=self.request.user)
+        wordproperties_list = self.queryset.filter(
+            chapter__created_by=self.request.user
+        )
+        serializer = serializers.WordPropertiesSerializer(
+            wordproperties_list, many=True
+        )
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        write_serializer = serializers.WordPropertiesCreateSerializer(
+            data=request.data
+        )
+        if write_serializer.is_valid():
+            wordproperties = write_serializer.save()
+            read_serializer = serializers.WordPropertiesSerializer(
+                wordproperties
+            )
+            return Response(
+                read_serializer.data, status=status.HTTP_201_CREATED
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class WordPropertiesDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = WordProperties.objects.all()
+    serializer_class = serializers.WordPropertiesDetailSerializer
 
 
 class LearningDataViewSet(viewsets.ModelViewSet):

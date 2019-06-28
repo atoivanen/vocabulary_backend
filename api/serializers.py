@@ -140,6 +140,38 @@ class WordPropertiesSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
 
+class WordPropertiesCreateSerializer(serializers.ModelSerializer):
+    """Serialize word properties creation"""
+    class Meta:
+        model = WordProperties
+        fields = (
+            'word',
+            'chapter',
+            'token',
+            'frequency'
+        )
+
+    def create(self, validated_data):
+        """
+        Create and return a new WordProperties instance given the validated data
+        """
+        return WordProperties.objects.create(**validated_data)
+
+
+class WordPropertiesDetailSerializer(serializers.ModelSerializer):
+    """Serializer for word properties objects"""
+    class Meta:
+        model = WordProperties
+        fields = (
+            'id',
+            'word',
+            'chapter',
+            'token',
+            'frequency'
+        )
+        read_only_fields = ('id', 'word', 'chapter')
+
+
 class ChapterSerializer(serializers.ModelSerializer):
     """Serialize a chapter"""
     class Meta:
