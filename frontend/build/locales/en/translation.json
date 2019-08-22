@@ -80,6 +80,7 @@
   "SaveChapterButton": "Save",
   "TextareaPlaceholder": "Text",
   "ChapterCreationFailed": "Failed to create chapter",
+  "ChapterCreationFailedMemoryLimitation": "Server does not have enough memory to analyze the text",
   "AnalyzingMessage": "Analyzing...",
   "PublishChapterButton": "Publish",
   "PublishFailed": "Failed to publish the chapter",

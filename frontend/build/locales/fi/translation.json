@@ -80,6 +80,7 @@
   "SaveChapterButton": "Tallenna",
   "TextareaPlaceholder": "Teksti",
   "ChapterCreationFailed": "Uuden tekstin luominen epäonnistui",
+  "ChapterCreationFailedMemoryLimitation": "Palvelimen muisti ei riitä tekstin analysointiin",
   "AnalyzingMessage": "Analysoidaan...",
   "PublishChapterButton": "Julkaise",
   "PublishFailed": "Julkaiseminen epäonnistui",
