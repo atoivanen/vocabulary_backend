@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.exceptions import APIException
 
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
@@ -6,6 +7,12 @@ from django.utils.translation import gettext_lazy as _
 
 from vocabulary.models import Word, Chapter, WordProperties, LearningData
 from vocabulary.helpers.helpers_fr_fi import save_chapter
+
+
+class ServiceUnavailable(APIException):
+    status_code = 503
+    default_detail = _('Server does not have enough memory to analyze the text')
+    default_code = 'service_unavailable'
 
 
 class AuthTokenSerializer(serializers.Serializer):
@@ -212,7 +219,7 @@ class ChapterCreateSerializer(serializers.ModelSerializer):
         target_lang = validated_data.pop('target_lang')
         created_by = validated_data.pop('created_by')
         public = validated_data.pop('public')
-        chapter = save_chapter(
+        (chapter, analyzed) = save_chapter(
             body,
             source_lang,
             target_lang,
@@ -220,8 +227,10 @@ class ChapterCreateSerializer(serializers.ModelSerializer):
             public,
             created_by
         )
-        return chapter
+        if not analyzed:
+            raise ServiceUnavailable()
 
+        return chapter
 
 class ChapterDetailSerializer(ChapterSerializer):
     """Serialize a chapter detail"""

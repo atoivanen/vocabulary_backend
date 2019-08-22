@@ -129,6 +129,7 @@ def save_chapter(
 
     Returns:
     Chapter: Chapter object created from the given parameters
+    boolean: True if text was analyzed, False if not
 
     """
     # save chapter
@@ -167,4 +168,6 @@ def save_chapter(
             wp.word = w
             wp.save()
 
-    return chapter
+        return (chapter, True)
+
+    return (chapter, False)
