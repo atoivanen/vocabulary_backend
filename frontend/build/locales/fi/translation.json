@@ -64,7 +64,7 @@
   "MyVocabularyLink": "Oma sanasto",
   "MyVocabularyTitle": "Oma sanasto",
   "NumberOfWordsLearned": "Osaat {{count}} sanaa!",
-  "NoWordsInVocabulary": "Sanastosi on tyhjä",
+  "NoWordsInVocabulary": "Sanastosi on tyhjä. Sanat, joita harjoittelet lukemiston harjoittelutoiminnallisuudella, lisätään omaan sanastoon.",
   "SelectWordsToShow": "Valitse",
   "SelectAll": "Kaikki",
   "SelectNothing": "Ei mitään",
@@ -106,10 +106,13 @@
   "RemoveButton": "Poista",
   "RemovalSucceeded": "Poistettiin",
   "RemovalFailed": "Poisto epäonnistui",
-  "AddWordFromDictionaryButton": "Lisää sanakirjasta",
+  "AddWordFromDictionaryButton": "Lisää sana",
   "AddWordToVocabulary": "Lisää sanastoon",
   "WordForms": "Taivutusmuodot",
   "AddedWord": "Lisättiin sana",
   "ChooseWordFromDictionary": "Et voi lisätä tätä sanaa. Syötä vähintään kaksi kirjainta Sana-kenttään, jotta saat näkyviin vaihtoehdot.",
-  "TokenLabel": "Sananmuodot"
+  "TokenLabel": "Sananmuodot",
+  "ConfirmRemove": "Poistetaanko",
+  "ReturnButton": "Palaa",
+  "StartTyping": "Syötä hakukenttään ainakin yksi kirjain nähdäksesi sanoja."
 }
