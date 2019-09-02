@@ -114,5 +114,6 @@
   "TokenLabel": "Word Forms",
   "ConfirmRemove": "Are you sure you want to remove",
   "ReturnButton": "Return",
-  "StartTyping": "Type at least one letter to the search box to display content."
+  "StartTyping": "Type at least one letter to the search box to display content.",
+  "WrongCredentials": "Username or password is incorrect"
 }

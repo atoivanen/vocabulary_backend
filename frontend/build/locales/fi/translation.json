@@ -114,5 +114,6 @@
   "TokenLabel": "Sananmuodot",
   "ConfirmRemove": "Poistetaanko",
   "ReturnButton": "Palaa",
-  "StartTyping": "Syötä hakukenttään ainakin yksi kirjain nähdäksesi sanoja."
+  "StartTyping": "Syötä hakukenttään ainakin yksi kirjain nähdäksesi sanoja.",
+  "WrongCredentials": "Käyttäjätunnus tai salasana on väärin"
 }
