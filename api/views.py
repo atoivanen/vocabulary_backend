@@ -65,11 +65,18 @@ class WordViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """
         Optionally restricts the returned words to those that start
-        with a `startswith` query parameter in the URL
+        with a `startswith` query parameter in the URL, have the source
+        language `source`, and target language `target`
         """
         startswith = self.request.query_params.get('startswith', None)
+        source = self.request.query_params.get('source', None)
+        target = self.request.query_params.get('target', None)
         if startswith is not None:
             self.queryset = self.queryset.filter(lemma__istartswith=startswith)
+        if source is not None:
+            self.queryset = self.queryset.filter(source_lang=source)
+        if target is not None:
+            self.queryset = self.queryset.filter(target_lang=target)
         return self.queryset
 
     def perform_create(self, serializer):
@@ -129,13 +136,19 @@ class ChapterListView(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get(self, request, *args, **kwargs):
+        source = self.request.query_params.get('source', None)
+        target = self.request.query_params.get('target', None)
         if not request.user.username:
-            chapters = self.queryset.filter(public=True)
+            self.queryset = self.queryset.filter(public=True)
         else:
-            chapters = self.queryset.filter(
+            self.queryset = self.queryset.filter(
                 Q(created_by=request.user) | Q(public=True)
             )
-        serializer = serializers.ChapterSerializer(chapters, many=True)
+        if source is not None:
+            self.queryset = self.queryset.filter(source_lang=source)
+        if target is not None:
+            self.queryset = self.queryset.filter(target_lang=target)
+        serializer = serializers.ChapterSerializer(self.queryset, many=True)
         return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):

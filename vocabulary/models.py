@@ -33,6 +33,8 @@ class Word(models.Model):
     # Language choices
     FRENCH = 'fr'
     FINNISH = 'fi'
+    ITALIAN = 'it'
+    ENGLISH = 'en'
 
     GENDER_CHOICES = (
         (FEMININE, 'Feminine'),
@@ -62,6 +64,8 @@ class Word(models.Model):
     LANGUAGE_CHOICES = (
         (FRENCH, 'French'),
         (FINNISH, 'Finnish'),
+        (ITALIAN, 'Italian'),
+        (ENGLISH, 'English'),
     )
     lemma = models.CharField(max_length=255)
     translation = models.CharField(max_length=255)
@@ -69,6 +73,7 @@ class Word(models.Model):
         max_length=5, choices=POS_CHOICES, verbose_name='Part-of-speech'
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
+    pronunciation = models.CharField(max_length=255, null=True)
     source_lang = models.CharField(
         max_length=2, choices=LANGUAGE_CHOICES, verbose_name='Source language'
     )
@@ -92,7 +97,13 @@ class Word(models.Model):
 
     class Meta:
         ordering = ['lemma']
-        unique_together = ['lemma', 'pos', 'gender']
+        unique_together = [
+            'lemma',
+            'pos',
+            'gender',
+            'target_lang',
+            'source_lang'
+        ]
 
     def __str__(self):
         return self.lemma + ' (' + self.pos + ') -> ' + self.translation
@@ -103,10 +114,14 @@ class Chapter(models.Model):
     # Language choices
     FRENCH = 'fr'
     FINNISH = 'fi'
+    ITALIAN = 'it'
+    ENGLISH = 'en'
 
     LANGUAGE_CHOICES = (
         (FRENCH, 'French'),
         (FINNISH, 'Finnish'),
+        (ITALIAN, 'Italian'),
+        (ENGLISH, 'English'),
     )
 
     title = models.CharField(max_length=255, default=DEFAULT_TITLE)
@@ -164,4 +179,3 @@ class LearningData(models.Model):
         verbose_name_plural = 'Learning Data'
         ordering = ['word']
         unique_together = ['word', 'user']
-
