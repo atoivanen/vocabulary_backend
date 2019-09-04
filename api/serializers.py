@@ -48,6 +48,7 @@ class LearningDataForUserSerializer(serializers.ModelSerializer):
     translation = serializers.ReadOnlyField(source='word.translation')
     pos = serializers.ReadOnlyField(source='word.pos')
     gender = serializers.ReadOnlyField(source='word.gender')
+    pronunciation = serializers.ReadOnlyField(source='word.pronunciation')
     source_lang = serializers.ReadOnlyField(source='word.source_lang')
     target_lang = serializers.ReadOnlyField(source='word.target_lang')
 
@@ -60,6 +61,7 @@ class LearningDataForUserSerializer(serializers.ModelSerializer):
             'translation',
             'pos',
             'gender',
+            'pronunciation',
             'source_lang',
             'target_lang',
             'learned'
@@ -116,6 +118,7 @@ class WordSerializer(serializers.ModelSerializer):
             'translation',
             'pos',
             'gender',
+            'pronunciation',
             'source_lang',
             'target_lang',
             'created_by',
@@ -131,6 +134,7 @@ class WordPropertiesSerializer(serializers.ModelSerializer):
     translation = serializers.ReadOnlyField(source='word.translation')
     pos = serializers.ReadOnlyField(source='word.pos')
     gender = serializers.ReadOnlyField(source='word.gender')
+    pronunciation = serializers.ReadOnlyField(source='word.pronunciation')
 
     class Meta:
         model = WordProperties
@@ -141,6 +145,7 @@ class WordPropertiesSerializer(serializers.ModelSerializer):
             'translation',
             'pos',
             'gender',
+            'pronunciation',
             'token',
             'frequency'
         )
